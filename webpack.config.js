@@ -1,8 +1,10 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const path = require('path')
 //node模块导出定义
 module.exports = {
     //生产环境
-    mode:'production',
+    mode: 'production',
     //入口
     entry: {
         index: './lib/index.tsx'
@@ -22,5 +24,12 @@ module.exports = {
                 loader: 'awesome-typescript-loader'
             }
         ]
-    }
+    },
+    plugins: [
+        //按照模板生成html文件，并把编译后的js自动写入html文件中
+        new HtmlWebpackPlugin({
+            title: 'gsq-react-ui',
+            template: 'index.html'
+        })
+    ]
 }
