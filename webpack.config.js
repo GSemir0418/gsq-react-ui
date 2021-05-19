@@ -9,6 +9,11 @@ module.exports = {
     entry: {
         index: './lib/index.tsx'
     },
+
+    resolve: {
+        //都需要去找哪些后缀的
+        extensions: ['.ts', '.tsx', '.js', '.jsx']
+    },
     //输出的配置
     output: {
         path: path.resolve(__dirname, 'dist/lib'),
@@ -31,5 +36,20 @@ module.exports = {
             title: 'gsq-react-ui',
             template: 'index.html'
         })
-    ]
+    ],
+    //外部的库，告诉webpack下面这两个是外部的，不用打包
+    externals: {
+        react: {
+            commonjs: 'react',
+            commonjs2: 'react',
+            amd: 'react',
+            root: 'React',
+        },
+        'react-dom': {
+            commonjs: 'react-dom',
+            commonjs2: 'react-dom',
+            amd: 'react-dom',
+            root: 'ReactDOM',
+        },
+    },
 }
